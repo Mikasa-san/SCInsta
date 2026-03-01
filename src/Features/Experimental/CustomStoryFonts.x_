@@ -1,0 +1,46 @@
+%hook IGStoryTextEntryViewController
+- (id)initWithSticker:(id)arg1
+                  userSession:(id)arg2
+                configuration:(IGStoryTextEntryViewControllerConfiguration *)config
+shouldUseStickyTextBackground:(_Bool)arg4
+            treatStickerAsNew:(_Bool)arg5
+            mediaEXIFLocation:(id)arg6
+           creationEntryPoint:(long long)arg7
+           attachedEditorMode:(unsigned long long)arg8
+                       module:(id)arg9
+{
+    NSArray *customFonts = [[NSUserDefaults standardUserDefaults] arrayForKey:kCustomFontKey];
+
+    [[[customFonts reverseObjectEnumerator] allObjects] enumerateObjectsUsingBlock:^(NSString *fontName, NSUInteger idx, BOOL *stop)
+    {
+        // blocking issue atm is that types are linked to different fonts internally in Instagram
+        // it's possible to override them, or if they're not shown to the user normally you can take their id
+        // but it's not possible to arbitrarily add any # of custom fonts to the story text controller
+        // overlapping ids cause only one of the fonts with the id to be selected, being the earliest one in the array
+        IGRichTextFormat *format = [[%c(IGRichTextFormat) alloc] initWithType:1
+                                                                animationType:2
+                                                      accessibilityDescriptor:[NSString stringWithFormat:@"%@ text style", fontName]
+                                                                         font:[UIFont fontWithName:fontName size:30.0]
+                                                                  minFontSize:12
+                                                                  maxFontSize:64
+                                                           fontSizeMultiplier:1
+                                                             defaultAlignment:1
+                                                           lineHeightMultiple:1
+                                                                  loggingName:@""
+                                                           forceUppercaseText:false
+                                                          placeholderTextSize:26
+                                                       autocapitalizationType:2
+                                                 underlineThicknessMultiplier:1
+                                                  includesAtSymbolInUnderline:1
+                                                               textV2Emphasis:nil
+                                                      textV2SecondaryEmphasis:nil
+        ];
+
+        config.textFormats = [@[format] arrayByAddingObjectsFromArray:config.textFormats];
+        [config setValue:format forKey:@"initialTextFormat"];
+
+    }];
+
+    return %orig(arg1, arg2, config, arg4, arg5, arg6, arg7, arg8, arg9);
+}
+%end

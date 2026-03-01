@@ -361,6 +361,10 @@
 - (void)textViewControllerDidUpdateWithColor:(id)color colorSource:(NSInteger)source;
 @end
 
+@interface IGStoryCreationDrawingViewController : UIViewController
+- (void)drawingControls:(id)arg1 didSelectColor:(id)arg2;
+@end
+
 @interface IGStoryColorPaletteView : UIView
 @end
 
@@ -484,6 +488,16 @@
 
 @interface IGCreationActionBarLabeledButton : NSObject
 @property (readonly, nonatomic) IGCreationActionBarButton *button;
+@end
+
+@interface IGRichTextFormat : NSObject
+@property (readonly, copy, nonatomic) NSString *displayName;
+
+- (id)initWithType:(long long)type animationType:(long long)type accessibilityDescriptor:(id)descriptor font:(id)font minFontSize:(double)size maxFontSize:(double)size fontSizeMultiplier:(double)multiplier defaultAlignment:(unsigned long long)alignment lineHeightMultiple:(double)multiple loggingName:(id)name forceUppercaseText:(_Bool)text placeholderTextSize:(double)size autocapitalizationType:(long long)type underlineThicknessMultiplier:(double)multiplier includesAtSymbolInUnderline:(_Bool)underline textV2Emphasis:(id)emphasis textV2SecondaryEmphasis:(id)emphasis;
+@end
+
+@interface IGStoryTextEntryViewControllerConfiguration : NSObject
+@property (copy, nonatomic) NSArray<IGRichTextFormat *> *textFormats;
 @end
 
 

@@ -195,21 +195,24 @@
         @{
             @"header": @"",
             @"rows": @[
-                // [SCISetting navigationCellWithTitle:@"Experimental"
-                //                            subtitle:@""
-                //                                icon:[SCISymbol symbolWithName:@"testtube.2"]
-                //                         navSections:@[@{
-                //                             @"header": @"Warning",
-                //                             @"footer": @"These features are unstable and cause the Instagram app to crash unexpectedly.\n\nUse at your own risk!"
-                //                         },
-                //                         @{
-                //                             @"header": @"",
-                //                             @"rows": @[
-
-                //                             ]
-                //                         }
-                //                         ]
-                // ],
+                [SCISetting navigationCellWithTitle:@"Experimental"
+                                           subtitle:@""
+                                               icon:[SCISymbol symbolWithName:@"testtube.2"]
+                                        navSections:@[@{
+                                            @"header": @"Warning",
+                                            @"footer": @"These features are unstable and cause the Instagram app to crash unexpectedly.\n\nUse at your own risk!"
+                                        },
+                                        @{
+                                            @"header": @"",
+                                            @"rows": @[
+                                                [SCISetting navigationCellWithTitle:@"Custom Fonts"
+                                                                           subtitle:@"Select fonts on your device for use in Instagram"
+                                                                               icon:[SCISymbol symbolWithName:@"textformat.alt"]
+                                                                     viewController:[SCICustomFontsViewController new]
+                                                ],
+                                            ]
+                                        }]
+                ],
                 [SCISetting navigationCellWithTitle:@"Debug"
                                            subtitle:@""
                                                icon:[SCISymbol symbolWithName:@"ladybug"]

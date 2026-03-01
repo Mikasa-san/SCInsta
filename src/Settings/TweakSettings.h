@@ -4,6 +4,8 @@
 #import "../Utils.h"
 #import "../Tweak.h"
 
+#import "SCICustomFontsViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SCITweakSettings : NSObject
