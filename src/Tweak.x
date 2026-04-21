@@ -103,7 +103,7 @@ BOOL isAuthenticationShown = FALSE;
 
         isAuthenticationShown = TRUE;
 
-        NSLog(@"[Hypergram] Padlock authentication: App enabled");
+        NSLog(@"[SCInsta] Padlock authentication: App enabled");
     }
 }
 
