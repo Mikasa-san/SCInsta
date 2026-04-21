@@ -1,4 +1,4 @@
-#import "SecurityViewController.h"
+#import "SCISecurityViewController.h"
 
 @implementation SCISecurityViewController
 

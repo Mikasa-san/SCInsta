@@ -11,6 +11,8 @@
 
 #import "Settings/SCISettingsViewController.h"
 
+#import "Settings/SCISecurityViewController.h"
+
 #define SCILog(fmt, ...) \
     do { \
         NSString *tmpStr = [NSString stringWithFormat:(fmt), ##__VA_ARGS__]; \
