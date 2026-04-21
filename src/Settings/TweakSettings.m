@@ -41,6 +41,12 @@
                                                 [SCISetting switchCellWithTitle:@"Disable app haptics" subtitle:@"Disables haptics/vibrations within the Instagram app" defaultsKey:@"disable_haptics"]
                                             ]
                                         },
+					@{
+					    @"header": @"Security",
+					    @"rows": @[
+						[SCISetting switchCellWithTitle:@"Pad Lock" subtitle:@"Requires Face ID, Touch ID, or passcode to unlock Instagram" defaultsKey:@"Padlock"],
+					    ]
+					},
                                         @{
                                             @"header": @"Notes",
                                             @"rows": @[

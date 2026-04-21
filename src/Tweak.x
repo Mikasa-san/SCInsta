@@ -20,6 +20,9 @@ BOOL dmVisualMsgsViewedButtonEnabled = false;
 
 // MARK: Tweak first-time setup
 %hook IGInstagramAppDelegate
+
+BOOL isAuthenticationShown = FALSE;
+
 - (_Bool)application:(UIApplication *)application willFinishLaunchingWithOptions:(id)arg2 {
     // Default SCInsta config
     NSDictionary *sciDefaults = @{
@@ -90,7 +93,27 @@ BOOL dmVisualMsgsViewedButtonEnabled = false;
     if ([SCIUtils getBoolPref:@"flex_app_start"]) {
         [[objc_getClass("FLEXManager") sharedManager] showExplorer];
     }
+
+    // Padlock (biometric auth)
+    if ([SCIUtils getBoolPref:@"Padlock"] && !isAuthenticationShown) {
+        UIViewController *rootController = [[self window] rootViewController];
+        SCISecurityViewController *securityViewController = [SCISecurityViewController new];
+        securityViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [rootController presentViewController:securityViewController animated:YES completion:nil];
+
+        isAuthenticationShown = TRUE;
+
+        NSLog(@"[Hypergram] Padlock authentication: App enabled");
+    }
 }
+
+- (void)applicationWillEnterForeground:(id)arg1 {
+    %orig;
+
+    // Reset padlock status
+    isAuthenticationShown = FALSE;
+}
+
 %end
 
 // MARK: Liquid glass
