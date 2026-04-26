@@ -178,6 +178,8 @@
 @end
 
 @interface IGStoryVideoView : UIView
+@property (nonatomic, readonly) IGMedia *item;
+@property (readonly, nonatomic) IGMedia *videoURLProvider;
 @property (nonatomic, weak, readwrite) IGStoryFullscreenSectionController *captionDelegate;
 
 - (void)addLongPressGestureRecognizer; // new
